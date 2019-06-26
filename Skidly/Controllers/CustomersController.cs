@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Skidly.Models;
 
@@ -24,13 +22,13 @@ namespace Skidly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _dbContext.Customers.ToList();
+            var customers = _dbContext.Customers.Include(x => x.MembershipType).ToList();
             return View(customers);
         }
 
         public ActionResult Details(int id)
         {
-            var customer = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _dbContext.Customers.Include(x => x.MembershipType).SingleOrDefault(c => c.Id == id);
             if (customer == null)
                 return HttpNotFound();
 
