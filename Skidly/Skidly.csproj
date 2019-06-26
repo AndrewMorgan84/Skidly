@@ -194,6 +194,14 @@
     <Compile Include="Migrations\201906261914307_PopulateMembershipTypes.Designer.cs">
       <DependentUpon>201906261914307_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906261926067_AddedDataAnnotationsToCustomerAndMovie.cs" />
+    <Compile Include="Migrations\201906261926067_AddedDataAnnotationsToCustomerAndMovie.Designer.cs">
+      <DependentUpon>201906261926067_AddedDataAnnotationsToCustomerAndMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906261937287_PopulateMovieTable.cs" />
+    <Compile Include="Migrations\201906261937287_PopulateMovieTable.Designer.cs">
+      <DependentUpon>201906261937287_PopulateMovieTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -297,6 +305,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906261914307_PopulateMembershipTypes.resx">
       <DependentUpon>201906261914307_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261926067_AddedDataAnnotationsToCustomerAndMovie.resx">
+      <DependentUpon>201906261926067_AddedDataAnnotationsToCustomerAndMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261937287_PopulateMovieTable.resx">
+      <DependentUpon>201906261937287_PopulateMovieTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

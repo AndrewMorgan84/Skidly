@@ -10,29 +10,32 @@ namespace Skidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private readonly ApplicationDbContext _dbContext;
+
+        public MoviesController()
+        {
+            _dbContext = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _dbContext.Dispose();
+        }
+
         public ViewResult Index()
         {
-            var movies = GetMovies();
+            var movies = _dbContext.Movies.ToList();
 
             return View(movies);
         }
 
         public ActionResult Details(int id)
         {
-            var movie = GetMovies().SingleOrDefault(c => c.Id == id);
+            var movie = _dbContext.Movies.SingleOrDefault(c => c.Id == id);
             if (movie == null)
                 return HttpNotFound();
 
             return View(movie);
-        }
-
-        private IEnumerable<Movie> GetMovies()
-        {
-            return new List<Movie>
-            {
-                new Movie { Id = 1, Name = "Shrek" },
-                new Movie { Id = 2, Name = "Wall-e" }
-            };
         }
     }
 }
