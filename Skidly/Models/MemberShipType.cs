@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Skidly.Models
 {
-    public class MemberShipType
+    public class MembershipType
     {
         public byte Id { get; set; }
         public short SignUpFee { get; set; }

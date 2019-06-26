@@ -186,12 +186,20 @@
     <Compile Include="Migrations\201906261856578_AddedMembershipTypeAndCustomerNavigationProperty.Designer.cs">
       <DependentUpon>201906261856578_AddedMembershipTypeAndCustomerNavigationProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906261901176_AddedMembershipTypeIdToCustomer.cs" />
+    <Compile Include="Migrations\201906261901176_AddedMembershipTypeIdToCustomer.Designer.cs">
+      <DependentUpon>201906261901176_AddedMembershipTypeIdToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906261914307_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\201906261914307_PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>201906261914307_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MemberShipType.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -283,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906261856578_AddedMembershipTypeAndCustomerNavigationProperty.resx">
       <DependentUpon>201906261856578_AddedMembershipTypeAndCustomerNavigationProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261901176_AddedMembershipTypeIdToCustomer.resx">
+      <DependentUpon>201906261901176_AddedMembershipTypeIdToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261914307_PopulateMembershipTypes.resx">
+      <DependentUpon>201906261914307_PopulateMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
