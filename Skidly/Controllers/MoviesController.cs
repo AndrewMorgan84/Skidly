@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using Skidly.Models;
-using Skidly.ViewModels;
 
 namespace Skidly.Controllers
 {
@@ -24,14 +21,14 @@ namespace Skidly.Controllers
 
         public ViewResult Index()
         {
-            var movies = _dbContext.Movies.ToList();
+            var movies = _dbContext.Movies.Include(m => m.Genre).ToList();
 
             return View(movies);
         }
 
         public ActionResult Details(int id)
         {
-            var movie = _dbContext.Movies.SingleOrDefault(c => c.Id == id);
+            var movie = _dbContext.Movies.Include(m => m.Genre).SingleOrDefault(c => c.Id == id);
             if (movie == null)
                 return HttpNotFound();
 

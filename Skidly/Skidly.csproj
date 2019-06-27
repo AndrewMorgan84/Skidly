@@ -218,9 +218,26 @@
     <Compile Include="Migrations\201906262034395_PopulateCustomerDateOfBirths.Designer.cs">
       <DependentUpon>201906262034395_PopulateCustomerDateOfBirths.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906271741499_AddGenre.cs" />
+    <Compile Include="Migrations\201906271741499_AddGenre.Designer.cs">
+      <DependentUpon>201906271741499_AddGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906271742391_AddGenreNavigationalPropertyToMovie.cs" />
+    <Compile Include="Migrations\201906271742391_AddGenreNavigationalPropertyToMovie.Designer.cs">
+      <DependentUpon>201906271742391_AddGenreNavigationalPropertyToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906271744312_PopulateGenres.cs" />
+    <Compile Include="Migrations\201906271744312_PopulateGenres.Designer.cs">
+      <DependentUpon>201906271744312_PopulateGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906271747339_RePopuplateMovies.cs" />
+    <Compile Include="Migrations\201906271747339_RePopuplateMovies.Designer.cs">
+      <DependentUpon>201906271747339_RePopuplateMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -339,6 +356,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906262034395_PopulateCustomerDateOfBirths.resx">
       <DependentUpon>201906262034395_PopulateCustomerDateOfBirths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906271741499_AddGenre.resx">
+      <DependentUpon>201906271741499_AddGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906271742391_AddGenreNavigationalPropertyToMovie.resx">
+      <DependentUpon>201906271742391_AddGenreNavigationalPropertyToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906271744312_PopulateGenres.resx">
+      <DependentUpon>201906271744312_PopulateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906271747339_RePopuplateMovies.resx">
+      <DependentUpon>201906271747339_RePopuplateMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
