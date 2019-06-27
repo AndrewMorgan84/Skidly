@@ -26,6 +26,16 @@ namespace Skidly.Controllers
             return View(customers);
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return null;
+        }
+
         public ActionResult Details(int id)
         {
             var customer = _dbContext.Customers.Include(x => x.MembershipType).SingleOrDefault(c => c.Id == id);

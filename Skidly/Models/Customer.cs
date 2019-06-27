@@ -15,6 +15,7 @@ namespace Skidly.Models
         public bool IsSubscribedToNewsLetter { get; set; }
         public MembershipType MembershipType { get; set; }
         public byte MembershipTypeId { get; set; }
+        [Display(Name = "Date Of Birth")]
         public DateTime? DateOfBirth { get; set; }
     }
 }
