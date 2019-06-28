@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Skidly.Models;
+using Skidly.ViewModels;
 
 namespace Skidly.Controllers
 {
@@ -28,7 +29,13 @@ namespace Skidly.Controllers
 
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = _dbContext.MembershipTypes.ToList();
+            var newCustomerViewModel = new NewCustomerViewModel()
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(newCustomerViewModel);
         }
 
         public ActionResult Create()
