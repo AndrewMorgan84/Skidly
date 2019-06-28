@@ -6,7 +6,7 @@ using Skidly.Models;
 
 namespace Skidly.ViewModels
 {
-    public class NewCustomerViewModel
+    public class CustomerFormViewModel
     {
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
 
