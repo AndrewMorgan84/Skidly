@@ -1,7 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Skidly.Models;
+using Skidly.ViewModels;
 
 namespace Skidly.Controllers
 {
@@ -26,13 +28,54 @@ namespace Skidly.Controllers
             return View(movies);
         }
 
-        public ActionResult Details(int id)
+        public ViewResult New()
         {
-            var movie = _dbContext.Movies.Include(m => m.Genre).SingleOrDefault(c => c.Id == id);
+            var genres = _dbContext.Genre.ToList();
+
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = genres
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _dbContext.Movies.SingleOrDefault(c => c.Id == id);
+
             if (movie == null)
                 return HttpNotFound();
 
-            return View(movie);
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _dbContext.Genre.ToList()
+            };
+
+            return View("MovieForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                movie.DateAdded = DateTime.Now;
+                _dbContext.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _dbContext.Movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.GenreId = movie.GenreId;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+            }
+
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
         }
     }
 }
