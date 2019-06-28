@@ -38,9 +38,12 @@ namespace Skidly.Controllers
             return View(newCustomerViewModel);
         }
 
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult Create(Customer customer)
         {
-            return null;
+            _dbContext.Customers.Add(customer);
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Customers");
         }
 
         public ActionResult Details(int id)
