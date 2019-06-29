@@ -32,6 +32,7 @@ namespace Skidly.Controllers
             var membershipTypes = _dbContext.MembershipTypes.ToList();
             var viewModel = new CustomerFormViewModel()
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
