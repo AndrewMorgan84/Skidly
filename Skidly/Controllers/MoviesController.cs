@@ -34,7 +34,6 @@ namespace Skidly.Controllers
 
             var viewModel = new MovieFormViewModel
             {
-                Movie = new Movie(),
                 Genres = genres
             };
 
@@ -48,9 +47,9 @@ namespace Skidly.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
+                
                 Genres = _dbContext.Genre.ToList()
             };
 
@@ -58,13 +57,13 @@ namespace Skidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new MovieFormViewModel()
+                var viewModel = new MovieFormViewModel(movie)
                 {
-                    Movie = movie,
                     Genres = _dbContext.Genre.ToList()
                 };
 
