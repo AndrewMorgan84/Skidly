@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using AutoMapper;
+using Skidly.Dtos;
 using Skidly.Models;
 
 namespace Skidly.Controllers.Api
@@ -18,37 +20,40 @@ namespace Skidly.Controllers.Api
 
         // GET /api/movies
         [HttpGet]
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<MovieDto> GetMovies()
         {
-            return _dbContext.Movies.ToList();
+            return _dbContext.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
         }
 
         // GET /api/movies/1
         [HttpGet]
-        public Movie GetMovie(int id)
+        public MovieDto GetMovie(int id)
         {
             var movie = _dbContext.Movies.Include(m => m.Genre).SingleOrDefault(c => c.Id == id);
             if (movie == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            return movie;
+            return Mapper.Map<Movie,MovieDto>(movie);
         }
 
         // POST /api/movie
         [HttpPost]
-        public Movie CreateMovie(Movie movie)
+        public MovieDto CreateMovie(MovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            var movie = Mapper.Map<MovieDto, Movie>(movieDto);
             _dbContext.Movies.Add(movie);
             _dbContext.SaveChanges();
 
-            return movie;
+            movieDto.Id = movie.Id;
+
+            return movieDto;
         }
 
         // PUT /api/movie/1
         [HttpPut]
-        public void UpdateMovie(int id, Movie movie)
+        public void UpdateMovie(int id, MovieDto movieDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -58,11 +63,7 @@ namespace Skidly.Controllers.Api
             if (movieInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            movieInDb.Name = movie.Name;
-            movieInDb.GenreId = movie.GenreId;
-            movieInDb.DateAdded = movie.DateAdded;
-            movieInDb.NumberInStock = movie.NumberInStock;
-            movieInDb.ReleaseDate = movie.ReleaseDate;
+            Mapper.Map(movieDto, movieInDb);
 
             _dbContext.SaveChanges();
 
