@@ -40,15 +40,18 @@
 
                 var deleteButton = $(this);
 
-                if (confirm("Are you sure you want to delete this customer?")) {
-                    $.ajax({
-                        url: "/api/customers/" + deleteButton.attr("data-customer-id"),
-                        method: "DELETE",
-                        success: function() {
-                            deleteButton.parents("tr").remove();
+                bootbox.confirm("Are you sure you want to delete this customer?",
+                    function(result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + deleteButton.attr("data-customer-id"),
+                                method: "DELETE",
+                                success: function() {
+                                    deleteButton.parents("tr").remove();
+                                }
+                            });
                         }
                     });
-                }
             });
         });
     </script>
