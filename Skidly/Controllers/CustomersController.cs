@@ -23,8 +23,7 @@ namespace Skidly.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _dbContext.Customers.Include(x => x.MembershipType).ToList();
-            return View(customers);
+            return View();
         }
 
         public ActionResult New()

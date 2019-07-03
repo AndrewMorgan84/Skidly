@@ -23,9 +23,7 @@ namespace Skidly.Controllers
 
         public ViewResult Index()
         {
-            var movies = _dbContext.Movies.Include(m => m.Genre).ToList();
-
-            return View(movies);
+            return View();
         }
 
         public ViewResult New()
