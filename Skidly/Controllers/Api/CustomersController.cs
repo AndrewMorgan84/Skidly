@@ -22,9 +22,9 @@ namespace Skidly.Controllers.Api
 
         // GET /api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _dbContext.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return Ok(_dbContext.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>));
         }
 
         // GET /api/customers/1
@@ -55,33 +55,36 @@ namespace Skidly.Controllers.Api
 
         // PUT /api/customer/1
         [HttpPut]
-        public void UpdateCustomer(int id, CustomerDto customerDto)
+        public IHttpActionResult UpdateCustomer(int id, CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             var customerInDb = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
 
-            if(customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+            if (customerInDb == null)
+                return NotFound();
 
             Mapper.Map(customerDto, customerInDb);
 
             _dbContext.SaveChanges();
 
+            return Ok();
         }
 
         // DELETE /api/customer/1
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDb = _dbContext.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customerInDb == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _dbContext.Customers.Remove(customerInDb);
             _dbContext.SaveChanges();
+
+            return Ok();
         }
     }
 }
