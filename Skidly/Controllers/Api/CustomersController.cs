@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Data.Entity;
-using System.Net;
-using System.Web;
 using AutoMapper;
 using Skidly.Dtos;
 using Skidly.Models;
