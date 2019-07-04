@@ -23,7 +23,12 @@ namespace Skidly.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetMovies()
         {
-            return Ok(_dbContext.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>));
+            var movieDtos = _dbContext.Movies
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
+
+            return Ok(movieDtos);
         }
 
         // GET /api/movies/1

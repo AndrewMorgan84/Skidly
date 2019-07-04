@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using System.Data.Entity;
 using AutoMapper;
 using Skidly.Dtos;
 using Skidly.Models;
@@ -21,7 +21,12 @@ namespace Skidly.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetCustomers()
         {
-            return Ok(_dbContext.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>));
+            var customerDtos = _dbContext.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDtos);
         }
 
         // GET /api/customers/1

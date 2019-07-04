@@ -8,6 +8,10 @@ namespace Skidly
     {
         public MappingProfile()
         {
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+            Mapper.CreateMap<MembershipTypeDto, MembershipType>();
+            Mapper.CreateMap<Genre, GenreDto>();
+            Mapper.CreateMap<GenreDto, Genre>();
             Mapper.CreateMap<Customer,CustomerDto>();
             Mapper.CreateMap<CustomerDto,Customer>();
             Mapper.CreateMap<Movie, MovieDto>();
